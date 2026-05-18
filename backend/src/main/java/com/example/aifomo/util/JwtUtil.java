@@ -27,7 +27,7 @@ public class JwtUtil {
     private static byte[] padTo32(byte[] source) {
         byte[] target = new byte[32];
         for (int i = 0; i < target.length; i++) {
-            target[i] = i < source.length ? source[i] : '0';
+            target[i] = i < source.length ? source[i] : (byte) '0';
         }
         return target;
     }

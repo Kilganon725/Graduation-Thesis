@@ -27,7 +27,10 @@ public class RecommendationServiceImpl extends ServiceImpl<RecommendationMapper,
     @Override
     public List<Recommendation> generateForUser(String username) {
         User user = userMapper.selectOne(new LambdaQueryWrapper<User>().eq(User::getUsername, username));
-        FomoTest test = fomoTestMapper.selectOne(new LambdaQueryWrapper<FomoTest>().eq(FomoTest::getUserId, user.getId()).orderByDesc(FomoTest::getId).last("limit 1"));
+        FomoTest test = fomoTestMapper.selectList(new LambdaQueryWrapper<FomoTest>().eq(FomoTest::getUserId, user.getId()).orderByDesc(FomoTest::getId))
+                .stream()
+                .findFirst()
+                .orElse(null);
 
         List<Recommendation> result = new ArrayList<>();
         if (test == null) {
