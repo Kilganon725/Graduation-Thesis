@@ -6,10 +6,14 @@
         <div class="page-title" style="font-size: 18px">最新测评结果</div>
         <template v-if="result">
           <el-descriptions :column="1" border>
-            <el-descriptions-item label="短视频时间">{{ result.shortVideoTime }}</el-descriptions-item>
-            <el-descriptions-item label="学习切换">{{ result.learningSwitch }}</el-descriptions-item>
-            <el-descriptions-item label="AI 焦虑">{{ result.anxietyLevel }}</el-descriptions-item>
-            <el-descriptions-item label="AI 使用">{{ result.aiUsage }}</el-descriptions-item>
+            <el-descriptions-item label="短视频时长(分钟/天)">{{ result.shortVideoMinutes }}</el-descriptions-item>
+            <el-descriptions-item label="学习方向切换(次/周)">{{ result.learningSwitchTimes }}</el-descriptions-item>
+            <el-descriptions-item label="AI焦虑频率">{{ anxietyLabel }}</el-descriptions-item>
+            <el-descriptions-item label="AI工具使用(次/天)">{{ result.aiUsageTimes }}</el-descriptions-item>
+            <el-descriptions-item label="短视频换算分">{{ result.shortVideoTime }}</el-descriptions-item>
+            <el-descriptions-item label="学习切换换算分">{{ result.learningSwitch }}</el-descriptions-item>
+            <el-descriptions-item label="AI焦虑换算分">{{ result.anxietyLevelScore }}</el-descriptions-item>
+            <el-descriptions-item label="AI使用换算分">{{ result.aiUsage }}</el-descriptions-item>
             <el-descriptions-item label="总分">{{ result.totalScore }}</el-descriptions-item>
             <el-descriptions-item label="焦虑等级">{{ result.anxietyLevel }}</el-descriptions-item>
           </el-descriptions>
@@ -39,6 +43,17 @@ import { computed, onMounted, ref } from 'vue'
 import { latestFomoApi } from '../api/fomo'
 
 const result = ref(null)
+const anxietyLabel = computed(() => {
+  if (!result.value) return '-'
+  const map = {
+    1: '几乎没有',
+    2: '偶尔',
+    3: '有时',
+    4: '经常',
+    5: '总是'
+  }
+  return map[result.value.anxietyFrequency] || '-'
+})
 const levelType = computed(() => {
   if (!result.value) return 'info'
   if (result.value.anxietyLevel === '正常') return 'success'

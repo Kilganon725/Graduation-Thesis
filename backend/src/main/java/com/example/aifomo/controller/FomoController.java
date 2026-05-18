@@ -2,6 +2,7 @@ package com.example.aifomo.controller;
 
 import com.example.aifomo.common.ApiResponse;
 import com.example.aifomo.dto.FomoTestRequest;
+import com.example.aifomo.dto.FomoResultVO;
 import com.example.aifomo.entity.FomoTest;
 import com.example.aifomo.service.FomoService;
 import jakarta.validation.Valid;
@@ -20,18 +21,19 @@ public class FomoController {
     }
 
     @PostMapping("/submit")
-    public ApiResponse<FomoTest> submit(Authentication authentication, @RequestBody @Valid FomoTestRequest request) {
-        return ApiResponse.success(fomoService.submit(authentication.getName(), request));
+    public ApiResponse<FomoResultVO> submit(Authentication authentication, @RequestBody @Valid FomoTestRequest request) {
+        FomoTest saved = fomoService.submit(authentication.getName(), request);
+        return ApiResponse.success(com.example.aifomo.service.impl.FomoServiceImpl.toVO(saved));
     }
 
     @GetMapping("/latest")
-    public ApiResponse<FomoTest> latest(Authentication authentication) {
+    public ApiResponse<FomoResultVO> latest(Authentication authentication) {
         return ApiResponse.success(fomoService.latestByUsername(authentication.getName()));
     }
 
     @GetMapping("/score")
     public ApiResponse<Map<String, Object>> score(Authentication authentication) {
-        FomoTest latest = fomoService.latestByUsername(authentication.getName());
+        FomoTest latest = fomoService.latestEntityByUsername(authentication.getName());
         if (latest == null) {
             return ApiResponse.success(Map.of("totalScore", 0, "level", "暂无数据"));
         }

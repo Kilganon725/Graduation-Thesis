@@ -18,6 +18,10 @@ CREATE TABLE `user` (
 CREATE TABLE `fomo_test` (
   id BIGINT PRIMARY KEY AUTO_INCREMENT,
   user_id BIGINT NOT NULL,
+  short_video_minutes INT NOT NULL DEFAULT 0,
+  learning_switch_times INT NOT NULL DEFAULT 0,
+  anxiety_frequency INT NOT NULL DEFAULT 0,
+  ai_usage_times INT NOT NULL DEFAULT 0,
   short_video_time INT NOT NULL,
   learning_switch INT NOT NULL,
   anxiety_level VARCHAR(32) NOT NULL,

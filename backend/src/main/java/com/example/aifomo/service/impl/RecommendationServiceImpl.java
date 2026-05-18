@@ -41,8 +41,8 @@ public class RecommendationServiceImpl extends ServiceImpl<RecommendationMapper,
         String goal = user.getLearningGoal() == null ? "" : user.getLearningGoal();
         boolean aiGoal = goal.contains("AI") || goal.contains("人工智能") || goal.contains("Python") || goal.contains("数据");
         boolean highAnxiety = "中度焦虑".equals(test.getAnxietyLevel()) || "高度焦虑".equals(test.getAnxietyLevel());
-        boolean lowStudy = test.getShortVideoTime() >= 12;
-        boolean frequentSwitch = test.getLearningSwitch() >= 12;
+        boolean lowStudy = test.getShortVideoMinutes() >= 60;
+        boolean frequentSwitch = test.getLearningSwitchTimes() >= 4;
 
         if (highAnxiety && lowStudy) {
             result.add(build(user.getId(), "基础学习路径：每天固定 30 分钟起步，先建立单一可执行计划，优先完成基础课程和练习。", "基础路径"));
