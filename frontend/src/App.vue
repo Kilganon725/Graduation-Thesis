@@ -16,6 +16,7 @@
         <el-menu-item v-if="isAuthed" index="/recommendation" @click="router.push('/recommendation')">学习推荐</el-menu-item>
         <el-menu-item v-if="isAuthed" index="/chat" @click="router.push('/chat')">AI聊天</el-menu-item>
         <el-menu-item v-if="isAuthed" index="/visualization" @click="router.push('/visualization')">数据可视化</el-menu-item>
+        <el-menu-item index="/sbti" @click="router.push('/sbti')">SBTI人格测试</el-menu-item>
         <el-menu-item v-if="isAdmin" index="/admin" @click="router.push('/admin')">管理员</el-menu-item>
       </el-menu>
       <div class="header-actions">
