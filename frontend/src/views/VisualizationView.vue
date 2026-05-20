@@ -41,7 +41,7 @@
               <div class="section-title">核心图表区</div>
               <div class="section-desc">焦虑分布、学习趋势、AI 使用与学习画像联动分析。</div>
             </div>
-            <el-tag effect="dark" type="info">支持 tooltip / legend / click / dataZoom</el-tag>
+            <el-tag effect="plain" type="info">支持 tooltip / legend / click / dataZoom</el-tag>
           </div>
 
           <div class="chart-grid chart-grid--primary">
@@ -103,7 +103,7 @@
             <el-card class="insight-card" shadow="never">
               <div class="insight-card__head">
                 <div class="section-title">点击详情</div>
-                <el-tag type="success" effect="dark">交互联动</el-tag>
+                <el-tag type="success" effect="plain">交互联动</el-tag>
               </div>
               <div class="insight-main">
                 <div class="insight-name">{{ activeInsight.title }}</div>
@@ -244,7 +244,7 @@ onMounted(loadData)
   max-width: 1600px;
   margin: 0 auto;
   padding: 4px 0 20px;
-  color: #eaf2ff;
+  color: #284062;
 }
 
 .visual-hero {
@@ -256,21 +256,21 @@ onMounted(loadData)
   margin-bottom: 18px;
   border-radius: 14px;
   background:
-    linear-gradient(135deg, rgba(19, 34, 69, 0.96), rgba(10, 21, 44, 0.98)),
-    radial-gradient(circle at top right, rgba(138, 124, 255, 0.14), transparent 40%);
-  border: 1px solid rgba(118, 150, 204, 0.16);
-  box-shadow: 0 20px 50px rgba(11, 20, 40, 0.18);
+    linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(239, 244, 255, 0.98)),
+    radial-gradient(circle at top right, rgba(112, 150, 255, 0.1), transparent 40%);
+  border: 1px solid rgba(114, 145, 214, 0.14);
+  box-shadow: 0 20px 50px rgba(83, 104, 145, 0.12);
 }
 
 .visual-title {
   margin: 0;
-  color: #f7fbff;
+  color: #213a62;
 }
 
 .visual-subtitle {
   max-width: 900px;
   margin-top: 10px;
-  color: #b6c9e6;
+  color: #647a9d;
   line-height: 1.7;
 }
 
@@ -286,10 +286,10 @@ onMounted(loadData)
   padding: 18px;
   border-radius: 14px;
   background:
-    linear-gradient(180deg, rgba(15, 26, 52, 0.96), rgba(11, 21, 43, 0.98)),
-    rgba(10, 19, 39, 0.94);
-  border: 1px solid rgba(118, 150, 204, 0.16);
-  box-shadow: 0 16px 36px rgba(10, 18, 36, 0.14);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(244, 247, 255, 0.98)),
+    rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(114, 145, 214, 0.14);
+  box-shadow: 0 16px 36px rgba(83, 104, 145, 0.1);
 }
 
 .section-head {
@@ -303,12 +303,12 @@ onMounted(loadData)
 .section-title {
   font-size: 16px;
   font-weight: 700;
-  color: #f5f8ff;
+  color: #233d64;
 }
 
 .section-desc {
   margin-top: 6px;
-  color: #9db1d1;
+  color: #6d82a2;
   font-size: 12px;
 }
 
@@ -366,9 +366,9 @@ onMounted(loadData)
 
 .insight-card {
   grid-column: span 12;
-  background: linear-gradient(180deg, rgba(18, 31, 61, 0.96), rgba(12, 24, 50, 0.98));
-  border: 1px solid rgba(118, 150, 204, 0.18);
-  color: #eaf2ff;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(242, 246, 255, 0.98));
+  border: 1px solid rgba(114, 145, 214, 0.14);
+  color: #234063;
   border-radius: 10px;
 }
 
@@ -383,12 +383,12 @@ onMounted(loadData)
 .insight-main {
   padding: 16px;
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(118, 150, 204, 0.12);
+  background: rgba(112, 149, 255, 0.05);
+  border: 1px solid rgba(114, 145, 214, 0.12);
 }
 
 .insight-name {
-  color: #b9cdf0;
+  color: #6c82a5;
   font-size: 13px;
 }
 
@@ -396,7 +396,7 @@ onMounted(loadData)
   margin-top: 8px;
   font-size: 20px;
   font-weight: 700;
-  color: #f6f9ff;
+  color: #223a60;
   word-break: break-word;
 }
 
@@ -412,9 +412,9 @@ onMounted(loadData)
   gap: 14px;
   padding: 12px 14px;
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(118, 150, 204, 0.1);
-  color: #d7e6ff;
+  background: rgba(112, 149, 255, 0.04);
+  border: 1px solid rgba(114, 145, 214, 0.1);
+  color: #34506e;
 }
 
 .compact :deep(.chart-panel__body) {

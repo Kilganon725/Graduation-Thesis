@@ -67,17 +67,18 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .chart-panel {
-  background: linear-gradient(180deg, rgba(16, 27, 53, 0.98), rgba(11, 22, 48, 0.96));
-  border: 1px solid rgba(118, 150, 204, 0.18);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(246, 250, 255, 0.98));
+  border: 1px solid rgba(107, 168, 255, 0.14);
   border-radius: 10px;
-  color: #eaf2ff;
+  color: #25324a;
   transition: transform 0.24s ease, box-shadow 0.24s ease, border-color 0.24s ease;
+  box-shadow: 0 10px 24px rgba(67, 97, 139, 0.08);
 }
 
 .chart-panel:hover {
   transform: translateY(-3px);
-  box-shadow: 0 18px 40px rgba(13, 25, 52, 0.28);
-  border-color: rgba(104, 169, 255, 0.32);
+  box-shadow: 0 18px 36px rgba(67, 97, 139, 0.12);
+  border-color: rgba(107, 168, 255, 0.28);
 }
 
 .chart-panel__header {
@@ -91,13 +92,13 @@ onBeforeUnmount(() => {
 .chart-title {
   font-size: 15px;
   font-weight: 700;
-  color: #f4f8ff;
+  color: #1f3554;
 }
 
 .chart-subtitle {
   margin-top: 6px;
   font-size: 12px;
-  color: #9fb2d2;
+  color: #7a879d;
 }
 
 .chart-panel__actions {

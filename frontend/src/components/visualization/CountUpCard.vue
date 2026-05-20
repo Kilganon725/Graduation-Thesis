@@ -64,17 +64,18 @@ const deltaText = computed(() => {
 
 <style scoped>
 .count-card {
-  background: linear-gradient(180deg, rgba(16, 27, 53, 0.98), rgba(11, 22, 48, 0.96));
-  border: 1px solid rgba(118, 150, 204, 0.18);
-  color: #eaf2ff;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(246, 250, 255, 0.98));
+  border: 1px solid rgba(107, 168, 255, 0.14);
+  color: #25324a;
   border-radius: 10px;
   transition: transform 0.24s ease, box-shadow 0.24s ease, border-color 0.24s ease;
+  box-shadow: 0 10px 24px rgba(67, 97, 139, 0.08);
 }
 
 .count-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 18px 40px rgba(13, 25, 52, 0.36);
-  border-color: rgba(104, 169, 255, 0.32);
+  box-shadow: 0 18px 36px rgba(67, 97, 139, 0.12);
+  border-color: rgba(107, 168, 255, 0.28);
 }
 
 .count-header {
@@ -85,7 +86,7 @@ const deltaText = computed(() => {
 }
 
 .count-label {
-  color: #bdd2f5;
+  color: #607189;
   font-size: 13px;
   letter-spacing: 0;
 }
@@ -97,17 +98,17 @@ const deltaText = computed(() => {
   margin-top: 16px;
   font-size: 30px;
   font-weight: 700;
-  color: #f4f8ff;
+  color: #1f3554;
 }
 
 .count-suffix {
   font-size: 14px;
-  color: #aac3e5;
+  color: #7587a5;
 }
 
 .count-meta {
   margin-top: 10px;
-  color: #96adc8;
+  color: #8b9cb5;
   font-size: 12px;
 }
 </style>
