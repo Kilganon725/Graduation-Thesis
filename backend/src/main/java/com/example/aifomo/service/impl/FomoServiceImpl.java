@@ -4,24 +4,30 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.aifomo.dto.FomoTestRequest;
 import com.example.aifomo.dto.FomoResultVO;
+import com.example.aifomo.entity.FomoIntervention;
 import com.example.aifomo.entity.FomoTest;
 import com.example.aifomo.entity.User;
 import com.example.aifomo.mapper.FomoTestMapper;
 import com.example.aifomo.mapper.UserMapper;
+import com.example.aifomo.service.InterventionService;
 import com.example.aifomo.service.FomoService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 
 @Service
 public class FomoServiceImpl extends ServiceImpl<FomoTestMapper, FomoTest> implements FomoService {
     private final UserMapper userMapper;
+    private final InterventionService interventionService;
 
-    public FomoServiceImpl(UserMapper userMapper) {
+    public FomoServiceImpl(UserMapper userMapper, InterventionService interventionService) {
         this.userMapper = userMapper;
+        this.interventionService = interventionService;
     }
 
     @Override
+    @Transactional
     public FomoTest submit(String username, FomoTestRequest request) {
         User user = userMapper.selectOne(new LambdaQueryWrapper<User>().eq(User::getUsername, username));
         FomoTest test = new FomoTest();
@@ -43,6 +49,7 @@ public class FomoServiceImpl extends ServiceImpl<FomoTestMapper, FomoTest> imple
         test.setTotalScore(shortVideoScore + switchScore + anxietyScore + aiUsageScore);
         test.setCreatedTime(LocalDateTime.now());
         save(test);
+        interventionService.createForTest(user, test);
         return test;
     }
 
@@ -58,7 +65,17 @@ public class FomoServiceImpl extends ServiceImpl<FomoTestMapper, FomoTest> imple
     @Override
     public FomoResultVO latestByUsername(String username) {
         FomoTest latest = latestEntityByUsername(username);
-        return toVO(latest);
+        if (latest == null) {
+            return null;
+        }
+        User user = userMapper.selectOne(new LambdaQueryWrapper<User>().eq(User::getUsername, username));
+        FomoTest previous = list(new LambdaQueryWrapper<FomoTest>().eq(FomoTest::getUserId, user.getId()).orderByDesc(FomoTest::getId).last("limit 2"))
+                .stream()
+                .skip(1)
+                .findFirst()
+                .orElse(null);
+        FomoIntervention intervention = interventionService.latestByTestId(latest.getId());
+        return toVO(latest, previous, intervention);
     }
 
     public static String calculateLevel(int shortVideoTime, int learningSwitch, int anxietyLevel, int aiUsage) {
@@ -102,6 +119,10 @@ public class FomoServiceImpl extends ServiceImpl<FomoTestMapper, FomoTest> imple
     }
 
     public static FomoResultVO toVO(FomoTest test) {
+        return toVO(test, null, null);
+    }
+
+    public static FomoResultVO toVO(FomoTest test, FomoTest previous, FomoIntervention intervention) {
         if (test == null) {
             return null;
         }
@@ -119,6 +140,22 @@ public class FomoServiceImpl extends ServiceImpl<FomoTestMapper, FomoTest> imple
         vo.setTotalScore(test.getTotalScore());
         vo.setAnxietyLevel(test.getAnxietyLevel());
         vo.setCreatedTime(test.getCreatedTime());
+        if (intervention != null) {
+            vo.setInterventionId(intervention.getId());
+            vo.setInterventionTitle(intervention.getTitle());
+            vo.setInterventionContent(intervention.getContent());
+            vo.setInterventionStatus(intervention.getStatus());
+            vo.setInterventionCreatedTime(intervention.getCreatedTime());
+            vo.setInterventionCompletedTime(intervention.getCompletedTime());
+        }
+        if (previous != null) {
+            vo.setPreviousTotalScore(previous.getTotalScore());
+            vo.setPreviousAnxietyLevel(previous.getAnxietyLevel());
+            vo.setPreviousCreatedTime(previous.getCreatedTime());
+            int delta = (test.getTotalScore() == null ? 0 : test.getTotalScore()) - (previous.getTotalScore() == null ? 0 : previous.getTotalScore());
+            vo.setScoreDelta(delta);
+            vo.setScoreTrend(delta < 0 ? "下降" : delta > 0 ? "上升" : "持平");
+        }
         return vo;
     }
 }

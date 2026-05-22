@@ -22,8 +22,8 @@ public class FomoController {
 
     @PostMapping("/submit")
     public ApiResponse<FomoResultVO> submit(Authentication authentication, @RequestBody @Valid FomoTestRequest request) {
-        FomoTest saved = fomoService.submit(authentication.getName(), request);
-        return ApiResponse.success(com.example.aifomo.service.impl.FomoServiceImpl.toVO(saved));
+        fomoService.submit(authentication.getName(), request);
+        return ApiResponse.success(fomoService.latestByUsername(authentication.getName()));
     }
 
     @GetMapping("/latest")

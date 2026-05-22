@@ -19,6 +19,7 @@
 - `POST /api/fomo/submit`
 - `GET /api/fomo/latest`
 - `GET /api/fomo/score`
+- `POST /api/intervention/{id}/complete`
 
 ## 推荐
 
@@ -36,8 +37,11 @@
 
 ## 管理员
 
+- `GET /api/admin/dashboard`
 - `GET /api/admin/users`
 - `DELETE /api/admin/users/{id}`
+- `GET /api/admin/fomo-tests`
+- `GET /api/admin/chats`
 - `GET /api/admin/recommendations`
 - `POST /api/admin/recommendations`
 - `DELETE /api/admin/recommendations/{id}`

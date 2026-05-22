@@ -21,4 +21,17 @@ public class FomoResultVO {
     private Integer totalScore;
     private String anxietyLevel;
     private LocalDateTime createdTime;
+
+    private Long interventionId;
+    private String interventionTitle;
+    private String interventionContent;
+    private String interventionStatus;
+    private LocalDateTime interventionCreatedTime;
+    private LocalDateTime interventionCompletedTime;
+
+    private Integer previousTotalScore;
+    private String previousAnxietyLevel;
+    private LocalDateTime previousCreatedTime;
+    private Integer scoreDelta;
+    private String scoreTrend;
 }

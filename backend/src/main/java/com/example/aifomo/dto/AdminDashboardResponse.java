@@ -24,6 +24,9 @@ public class AdminDashboardResponse {
         private long totalFomoTests;
         private long totalAiChats;
         private long totalRecommendations;
+        private long interventionTotalCount;
+        private long interventionCompletedCount;
+        private double interventionCompletionRate;
         private long highAnxietyCount;
         private double averageScore;
     }

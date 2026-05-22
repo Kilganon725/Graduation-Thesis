@@ -1,7 +1,7 @@
 <template>
   <div class="page-wrap" style="max-width: 860px">
     <div class="page-title">FOMO 测试</div>
-    <div class="page-subtitle">填写行为频率，系统会自动换算成 0-20 分，再计算总分与焦虑等级。</div>
+    <div class="page-subtitle">填写行为频率，系统会自动换算成 0-20 分，再计算总分、焦虑等级，并生成干预计划。</div>
     <div class="panel">
       <el-form :model="form" label-width="160px">
         <el-form-item label="每天刷短视频时长">
@@ -66,7 +66,7 @@ async function submit() {
   loading.value = true
   try {
     const res = await submitFomoApi(form)
-    ElMessage.success(`提交成功，总分 ${res.data.totalScore}`)
+    ElMessage.success(`提交成功，总分 ${res.data.totalScore}，已生成干预计划`)
     router.push('/result')
   } finally {
     loading.value = false

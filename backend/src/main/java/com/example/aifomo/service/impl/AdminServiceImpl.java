@@ -10,6 +10,7 @@ import com.example.aifomo.entity.User;
 import com.example.aifomo.exception.BizException;
 import com.example.aifomo.mapper.AiChatMapper;
 import com.example.aifomo.mapper.FomoTestMapper;
+import com.example.aifomo.service.InterventionService;
 import com.example.aifomo.mapper.RecommendationMapper;
 import com.example.aifomo.mapper.UserMapper;
 import com.example.aifomo.service.AdminService;
@@ -29,15 +30,18 @@ public class AdminServiceImpl implements AdminService {
     private final FomoTestMapper fomoTestMapper;
     private final AiChatMapper aiChatMapper;
     private final RecommendationMapper recommendationMapper;
+    private final InterventionService interventionService;
 
     public AdminServiceImpl(UserMapper userMapper,
                             FomoTestMapper fomoTestMapper,
                             AiChatMapper aiChatMapper,
-                            RecommendationMapper recommendationMapper) {
+                            RecommendationMapper recommendationMapper,
+                            InterventionService interventionService) {
         this.userMapper = userMapper;
         this.fomoTestMapper = fomoTestMapper;
         this.aiChatMapper = aiChatMapper;
         this.recommendationMapper = recommendationMapper;
+        this.interventionService = interventionService;
     }
 
     private void checkAdmin(String username) {
@@ -143,6 +147,9 @@ public class AdminServiceImpl implements AdminService {
         summary.setTotalFomoTests(tests.size());
         summary.setTotalAiChats(chats.size());
         summary.setTotalRecommendations(recommendations.size());
+        summary.setInterventionTotalCount(interventionService.totalCount());
+        summary.setInterventionCompletedCount(interventionService.completedCount());
+        summary.setInterventionCompletionRate(summary.getInterventionTotalCount() == 0 ? 0 : summary.getInterventionCompletedCount() * 100.0 / summary.getInterventionTotalCount());
         summary.setHighAnxietyCount(tests.stream().filter(item -> "高度焦虑".equals(item.getAnxietyLevel())).count());
         summary.setAverageScore(tests.stream().mapToInt(item -> item.getTotalScore() == null ? 0 : item.getTotalScore()).average().orElse(0));
         return summary;

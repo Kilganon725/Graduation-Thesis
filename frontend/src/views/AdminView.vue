@@ -28,6 +28,12 @@
             <CountUpCard label="FOMO测评数" :value="dashboard.summary.totalFomoTests" suffix="次" :meta="`平均分 ${dashboard.summary.averageScore.toFixed(1)}`" />
             <CountUpCard label="AI聊天数" :value="dashboard.summary.totalAiChats" suffix="条" meta="累计问答记录" />
             <CountUpCard label="推荐总数" :value="dashboard.summary.totalRecommendations" suffix="条" meta="系统生成与管理内容" />
+            <CountUpCard
+              label="干预完成率"
+              :value="dashboard.summary.interventionCompletionRate"
+              suffix="%"
+              :meta="`已完成 ${dashboard.summary.interventionCompletedCount} / ${dashboard.summary.interventionTotalCount}`"
+            />
           </div>
         </section>
 

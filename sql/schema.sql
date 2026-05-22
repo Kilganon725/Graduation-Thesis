@@ -2,6 +2,7 @@ CREATE DATABASE IF NOT EXISTS aifomo DEFAULT CHARACTER SET utf8mb4 COLLATE utf8m
 USE aifomo;
 
 DROP TABLE IF EXISTS `ai_chat`;
+DROP TABLE IF EXISTS `fomo_intervention`;
 DROP TABLE IF EXISTS `recommendation`;
 DROP TABLE IF EXISTS `fomo_test`;
 DROP TABLE IF EXISTS `user`;
@@ -30,6 +31,21 @@ CREATE TABLE `fomo_test` (
   created_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   INDEX idx_fomo_user_id (user_id),
   CONSTRAINT fk_fomo_user FOREIGN KEY (user_id) REFERENCES `user`(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE `fomo_intervention` (
+  id BIGINT PRIMARY KEY AUTO_INCREMENT,
+  user_id BIGINT NOT NULL,
+  test_id BIGINT NOT NULL,
+  title VARCHAR(128) NOT NULL,
+  content TEXT NOT NULL,
+  status VARCHAR(32) NOT NULL DEFAULT '待执行',
+  created_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  completed_time DATETIME DEFAULT NULL,
+  INDEX idx_intervention_user_id (user_id),
+  INDEX idx_intervention_test_id (test_id),
+  CONSTRAINT fk_intervention_user FOREIGN KEY (user_id) REFERENCES `user`(id) ON DELETE CASCADE,
+  CONSTRAINT fk_intervention_test FOREIGN KEY (test_id) REFERENCES `fomo_test`(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE `recommendation` (
