@@ -1,5 +1,7 @@
 # 后端接口说明
 
+当前版本：`v1.0.7`
+
 ## 启动
 
 1. 创建 MySQL 数据库 `aifomo`
@@ -14,18 +16,33 @@
 - `GET /api/user/profile`
 - `PUT /api/user/profile`
 - `POST /api/fomo/submit`
+- `GET /api/fomo/latest`
 - `GET /api/fomo/score`
+- `POST /api/intervention/{id}/complete`
 - `POST /api/recommendation/generate`
 - `GET /api/recommendation/mine`
 - `POST /api/chat`
 - `GET /api/chat/history`
 - `GET /api/stats`
+- `GET /api/admin/dashboard`
 - `GET /api/admin/users`
+- `GET /api/admin/fomo-tests`
+- `GET /api/admin/chats`
 - `GET /api/admin/recommendations`
+- `POST /api/admin/recommendations`
+- `DELETE /api/admin/users/{id}`
+- `DELETE /api/admin/recommendations/{id}`
+
+## 主要说明
+
+- `/api/fomo/submit` 提交测评后会自动生成干预计划
+- `/api/fomo/latest` 返回最新测评结果、干预计划和复测对比信息
+- `/api/intervention/{id}/complete` 用于标记干预计划已执行
+- `/api/admin/dashboard` 返回后台总览数据，包括干预完成率
+- 管理员默认按用户名 `admin` 判断
+- 启动后会自动初始化管理员账号：`admin / admin123`
+- 未配置 `AI_API_KEY` 时，聊天模块使用本地兜底回复，项目仍可直接运行
 
 ## 说明
 
 - 登录后使用 `Authorization: Bearer <token>`
-- 管理员默认按用户名 `admin` 判断
-- 启动后会自动初始化管理员账号：`admin / admin123`
-- 未配置 `AI_API_KEY` 时，聊天模块使用本地兜底回复，项目仍可直接运行
