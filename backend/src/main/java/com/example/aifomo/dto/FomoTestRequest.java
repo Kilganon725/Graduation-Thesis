@@ -26,4 +26,24 @@ public class FomoTestRequest {
     @Min(value = 0, message = "AI工具使用频率不能小于0")
     @Max(value = 50, message = "AI工具使用频率不能大于50")
     private Integer aiUsageTimes;
+
+    @NotNull(message = "sleepHours不能为空")
+    @Min(value = 0, message = "每日睡眠时长不能小于0")
+    @Max(value = 16, message = "每日睡眠时长不能大于16")
+    private Integer sleepHours;
+
+    @NotNull(message = "focusLevel不能为空")
+    @Min(value = 1, message = "专注程度不能小于1")
+    @Max(value = 5, message = "专注程度不能大于5")
+    private Integer focusLevel;
+
+    @NotNull(message = "notificationFrequency不能为空")
+    @Min(value = 1, message = "消息通知干扰频率不能小于1")
+    @Max(value = 5, message = "消息通知干扰频率不能大于5")
+    private Integer notificationFrequency;
+
+    @NotNull(message = "goalClarity不能为空")
+    @Min(value = 1, message = "目标清晰度不能小于1")
+    @Max(value = 5, message = "目标清晰度不能大于5")
+    private Integer goalClarity;
 }

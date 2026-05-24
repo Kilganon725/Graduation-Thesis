@@ -10,6 +10,10 @@
             <el-descriptions-item label="学习方向切换(次/周)">{{ result.learningSwitchTimes }}</el-descriptions-item>
             <el-descriptions-item label="AI焦虑频率">{{ anxietyLabel }}</el-descriptions-item>
             <el-descriptions-item label="AI工具使用(次/天)">{{ result.aiUsageTimes }}</el-descriptions-item>
+            <el-descriptions-item label="每日睡眠时长">{{ result.sleepHours }} 小时</el-descriptions-item>
+            <el-descriptions-item label="学习专注程度">{{ focusLabel }}</el-descriptions-item>
+            <el-descriptions-item label="消息通知干扰">{{ notificationLabel }}</el-descriptions-item>
+            <el-descriptions-item label="学习目标清晰度">{{ goalClarityLabel }}</el-descriptions-item>
             <el-descriptions-item label="短视频换算分">{{ result.shortVideoTime }}</el-descriptions-item>
             <el-descriptions-item label="学习切换换算分">{{ result.learningSwitch }}</el-descriptions-item>
             <el-descriptions-item label="AI焦虑换算分">{{ result.anxietyLevelScore }}</el-descriptions-item>
@@ -116,6 +120,18 @@ const anxietyLabel = computed(() => {
     5: '总是'
   }
   return map[result.value.anxietyFrequency] || '-'
+})
+const focusLabel = computed(() => {
+  if (!result.value) return '-'
+  return { 1: '很低', 2: '较低', 3: '一般', 4: '较高', 5: '很高' }[result.value.focusLevel] || '-'
+})
+const notificationLabel = computed(() => {
+  if (!result.value) return '-'
+  return { 1: '几乎没有', 2: '偶尔', 3: '有时', 4: '经常', 5: '频繁' }[result.value.notificationFrequency] || '-'
+})
+const goalClarityLabel = computed(() => {
+  if (!result.value) return '-'
+  return { 1: '很模糊', 2: '较模糊', 3: '一般', 4: '较清晰', 5: '非常清晰' }[result.value.goalClarity] || '-'
 })
 const levelType = computed(() => {
   if (!result.value) return 'info'

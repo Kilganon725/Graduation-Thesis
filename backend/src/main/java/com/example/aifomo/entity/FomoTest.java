@@ -17,6 +17,10 @@ public class FomoTest {
     private Integer learningSwitchTimes;
     private Integer anxietyFrequency;
     private Integer aiUsageTimes;
+    private Integer sleepHours;
+    private Integer focusLevel;
+    private Integer notificationFrequency;
+    private Integer goalClarity;
     private Integer shortVideoTime;
     private Integer learningSwitch;
     private String anxietyLevel;

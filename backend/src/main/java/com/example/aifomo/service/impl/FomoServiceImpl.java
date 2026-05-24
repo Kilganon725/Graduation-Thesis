@@ -36,6 +36,10 @@ public class FomoServiceImpl extends ServiceImpl<FomoTestMapper, FomoTest> imple
         test.setLearningSwitchTimes(request.getLearningSwitchTimes());
         test.setAnxietyFrequency(request.getAnxietyFrequency());
         test.setAiUsageTimes(request.getAiUsageTimes());
+        test.setSleepHours(request.getSleepHours());
+        test.setFocusLevel(request.getFocusLevel());
+        test.setNotificationFrequency(request.getNotificationFrequency());
+        test.setGoalClarity(request.getGoalClarity());
 
         int shortVideoScore = scoreShortVideoMinutes(request.getShortVideoMinutes());
         int switchScore = scoreLearningSwitchTimes(request.getLearningSwitchTimes());
@@ -133,6 +137,10 @@ public class FomoServiceImpl extends ServiceImpl<FomoTestMapper, FomoTest> imple
         vo.setLearningSwitchTimes(test.getLearningSwitchTimes());
         vo.setAnxietyFrequency(test.getAnxietyFrequency());
         vo.setAiUsageTimes(test.getAiUsageTimes());
+        vo.setSleepHours(test.getSleepHours());
+        vo.setFocusLevel(test.getFocusLevel());
+        vo.setNotificationFrequency(test.getNotificationFrequency());
+        vo.setGoalClarity(test.getGoalClarity());
         vo.setShortVideoTime(test.getShortVideoTime());
         vo.setLearningSwitch(test.getLearningSwitch());
         vo.setAnxietyLevelScore(scoreAnxietyFrequency(test.getAnxietyFrequency()));

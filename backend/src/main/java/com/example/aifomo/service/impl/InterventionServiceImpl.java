@@ -100,6 +100,18 @@ public class InterventionServiceImpl extends ServiceImpl<FomoInterventionMapper,
         if (test.getAiUsage() >= 15) {
             items.add("将 AI 工具使用限制为学习前 15 分钟、学习后 15 分钟两次，避免高频打断。");
         }
+        if (test.getSleepHours() != null && test.getSleepHours() < 7) {
+            items.add("把睡眠时间提升到每天至少 7 小时，减少熬夜带来的注意力波动。");
+        }
+        if (test.getFocusLevel() != null && test.getFocusLevel() <= 2) {
+            items.add("采用 25 分钟专注 + 5 分钟休息的节奏，先训练单次专注能力。");
+        }
+        if (test.getNotificationFrequency() != null && test.getNotificationFrequency() >= 4) {
+            items.add("学习时将消息通知调为免打扰，避免社交软件反复切断注意力。");
+        }
+        if (test.getGoalClarity() != null && test.getGoalClarity() <= 2) {
+            items.add("先写出本周唯一目标，再拆成 3 个可执行的小任务，提高目标清晰度。");
+        }
         if (items.isEmpty()) {
             items.add("保持当前习惯，继续按计划完成学习任务，并在 7 天后复测。");
         }
