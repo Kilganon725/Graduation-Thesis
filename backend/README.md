@@ -37,6 +37,7 @@
 
 - `/api/fomo/submit` 提交测评后会自动生成干预计划
 - `/api/fomo/latest` 返回最新测评结果、干预计划和复测对比信息
+- FOMO 测评新增补充画像项：睡眠时长、专注程度、通知干扰、目标清晰度，这些字段用于干预建议和结果分析，不参与总分计算
 - `/api/intervention/{id}/complete` 用于标记干预计划已执行
 - `/api/admin/dashboard` 返回后台总览数据，包括干预完成率
 - 管理员默认按用户名 `admin` 判断
