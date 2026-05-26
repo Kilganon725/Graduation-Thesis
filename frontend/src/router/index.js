@@ -9,6 +9,7 @@ import ResultView from '../views/ResultView.vue'
 import RecommendationView from '../views/RecommendationView.vue'
 import ChatView from '../views/ChatView.vue'
 import VisualizationView from '../views/VisualizationView.vue'
+import NewsView from '../views/NewsView.vue'
 import SbtiView from '../views/SbtiView.vue'
 import AdminView from '../views/AdminView.vue'
 
@@ -21,6 +22,7 @@ const routes = [
   { path: '/recommendation', component: RecommendationView, meta: { requiresAuth: true } },
   { path: '/chat', component: ChatView, meta: { requiresAuth: true } },
   { path: '/visualization', component: VisualizationView, meta: { requiresAuth: true } },
+  { path: '/news', component: NewsView },
   { path: '/sbti', component: SbtiView },
   { path: '/admin', component: AdminView, meta: { requiresAuth: true, requiresAdmin: true } }
 ]

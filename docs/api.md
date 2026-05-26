@@ -31,6 +31,10 @@
 - `POST /api/chat`
 - `GET /api/chat/history?limit=10`
 
+## 新闻
+
+- `GET /api/public/news?category=ai&keyword=&pageSize=8`
+
 ## 统计
 
 - `GET /api/stats`
