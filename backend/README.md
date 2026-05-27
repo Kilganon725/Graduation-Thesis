@@ -1,6 +1,6 @@
 # 后端接口说明
 
-当前版本：`v1.0.9`
+当前版本：`v1.0.10`
 
 ## 启动
 
@@ -39,12 +39,12 @@
 - `/api/fomo/latest` 返回最新测评结果、干预计划和复测对比信息
 - FOMO 测评新增补充画像项：睡眠时长、专注程度、通知干扰、目标清晰度，这些字段用于干预建议和结果分析，不参与总分计算
 - `/api/intervention/{id}/complete` 用于标记干预计划已执行
-- `GET /api/public/news` 获取 AI 与科技新闻栏目数据，支持分类和关键词，未配置 `NEWS_API_KEY` 时自动回退到 mock 数据
+- `GET /api/public/news` 获取 AI 与科技新闻栏目数据，支持分类和关键词，默认接入 TechCrunch RSS，抓取失败时自动回退到 mock 数据
 - `/api/admin/dashboard` 返回后台总览数据，包括干预完成率
 - 管理员默认按用户名 `admin` 判断
 - 启动后会自动初始化管理员账号：`admin / admin123`
 - 未配置 `AI_API_KEY` 时，聊天模块使用本地兜底回复，项目仍可直接运行
-- 新闻栏目默认通过 `NEWS_API_KEY` 接入 NewsAPI，环境变量可通过 `NEWS_BASE_URL` 覆盖接口地址
+- 新闻栏目默认通过 `NEWS_FEED_URL` 接入 TechCrunch RSS，环境变量可通过 `NEWS_SOURCE_NAME` 调整来源展示名称
 
 ## 说明
 

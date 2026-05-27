@@ -4,7 +4,7 @@
       <div>
         <div class="page-title news-title">AI 与科技新闻栏目</div>
         <div class="news-subtitle">
-          聚合 AI 最新进展、科技动态和研究趋势，支持图文浏览、分类切换与关键词搜索。
+          聚合 TechCrunch RSS 中的 AI 最新进展、科技动态和研究趋势，支持图文浏览、分类切换与关键词搜索。
         </div>
       </div>
       <div class="news-hero-actions">
@@ -46,7 +46,7 @@
           </el-card>
           <el-card class="news-stat" shadow="never">
             <div class="stat-label">数据来源</div>
-            <div class="stat-value">{{ feed.mock ? '本地回退' : 'NewsAPI' }}</div>
+            <div class="stat-value">{{ feed.mock ? '本地回退' : feed.sourceName }}</div>
           </el-card>
           <el-card class="news-stat" shadow="never">
             <div class="stat-label">更新时间</div>

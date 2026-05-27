@@ -1,6 +1,6 @@
 # AI时代大学生信息焦虑分析与个性化学习推荐系统
 
-当前版本：`v1.0.9`
+当前版本：`v1.0.10`
 
 ## 项目简介
 
@@ -34,7 +34,7 @@
 - 前端使用 Vue3 + Element Plus + ECharts，支持交互图表和响应式布局
 - 后端使用 Spring Boot + MyBatis Plus + JWT，结构清晰，适合毕业设计演示
 - AI 接口支持 OpenAI 兼容协议，未配置密钥时也可运行
-- 新闻栏目支持 NewsAPI 接入，未配置 `NEWS_API_KEY` 时自动回退到本地 mock 新闻
+- 新闻栏目支持 TechCrunch RSS 接入，未配置 `NEWS_FEED_URL` 时默认使用 TechCrunch 主 feed
 
 ## 启动顺序
 

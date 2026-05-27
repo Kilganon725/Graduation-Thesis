@@ -7,6 +7,7 @@ import java.util.List;
 
 @Data
 public class NewsFeedResponse {
+    private String sourceName;
     private String category;
     private String keyword;
     private int total;
