@@ -92,7 +92,7 @@
           </el-card>
         </section>
 
-        <el-empty v-if="!articles.length" description="暂无新闻数据" />
+        <el-empty v-if="!articles.length" description="暂无新闻数据，已自动切换到本地回退源" />
       </template>
     </el-skeleton>
   </div>
@@ -103,18 +103,14 @@ import { computed, onMounted, ref } from 'vue'
 import { ElMessage } from 'element-plus'
 import { Refresh } from '@element-plus/icons-vue'
 import { fetchNewsApi } from '../api/news'
+import { createMockNewsFeed } from '../mock/newsMock'
 
 const loading = ref(false)
 const ready = ref(false)
 const activeCategory = ref('ai')
 const keyword = ref('')
 const feed = ref({
-  category: 'ai',
-  keyword: '',
-  total: 0,
-  mock: true,
-  fetchedAt: '',
-  articles: []
+  ...createMockNewsFeed('ai', '', 9)
 })
 
 const categoryText = computed(() => {
@@ -142,8 +138,17 @@ async function loadNews() {
       keyword: keyword.value,
       pageSize: 9
     })
-    feed.value = res.data || feed.value
+    const payload = res.data
+    if (payload && Array.isArray(payload.articles) && payload.articles.length > 0) {
+      feed.value = payload
+    } else {
+      feed.value = createMockNewsFeed(activeCategory.value, keyword.value, 9)
+    }
     ready.value = true
+  } catch (error) {
+    feed.value = createMockNewsFeed(activeCategory.value, keyword.value, 9)
+    ready.value = true
+    console.warn('News API unavailable, using local mock feed.', error)
   } finally {
     loading.value = false
   }
