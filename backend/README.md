@@ -41,6 +41,7 @@
 - `/api/intervention/{id}/complete` 用于标记干预计划已执行
 - `GET /api/public/news` 获取 AI 与科技新闻栏目数据，支持分类和关键词，默认接入 TechCrunch RSS，抓取失败时自动回退到 mock 数据
 - `/api/admin/dashboard` 返回后台总览数据，包括干预完成率
+- 首页支持公开访问，登录后会补充用户画像、最新测评和新闻摘要预览
 - 管理员默认按用户名 `admin` 判断
 - 启动后会自动初始化管理员账号：`admin / admin123`
 - 未配置 `AI_API_KEY` 时，聊天模块使用本地兜底回复，项目仍可直接运行
